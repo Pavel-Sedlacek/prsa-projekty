@@ -13,7 +13,15 @@ class Field(private val width: Int, private val height: Int = width) {
         get() = field.toMap()
 
     fun play(coordinates: Coordinates) {
-        field[coordinates] = !(field[coordinates] ?: false)
+        playCheck(coordinates)
+        playCheck(coordinates.copy(x = coordinates.x + 1))
+        playCheck(coordinates.copy(x = coordinates.x - 1))
+        playCheck(coordinates.copy(y = coordinates.y + 1))
+        playCheck(coordinates.copy(y = coordinates.y - 1))
+    }
+
+    private fun playCheck(coordinates: Coordinates) {
+        if (field.containsKey(coordinates)) field[coordinates] = !(field[coordinates] ?: false)
     }
 
     fun isHomogeneous(): Boolean {

@@ -1,12 +1,11 @@
 import field.Field
 import io.CIO
-import io.GIO
 import io.IO
 
 class Game {
 
     private val field: Field = Field(5)
-    private val io: IO = GIO()
+    private val io: IO = CIO()
 
     suspend fun play() {
         while (!field.isHomogeneous()) {
