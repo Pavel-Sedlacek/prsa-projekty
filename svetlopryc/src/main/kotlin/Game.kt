@@ -8,7 +8,7 @@ class Game {
     private val io: IO = CIO()
 
     suspend fun play() {
-        while (!field.isHomogeneous()) {
+        while (!field.isAllOf()) {
             val inp = io.readInput(field.limits())
             field.play(inp)
             io.preview(field.fieldPreview)

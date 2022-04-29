@@ -24,8 +24,8 @@ class Field(private val width: Int, private val height: Int = width) {
         if (field.containsKey(coordinates)) field[coordinates] = !(field[coordinates] ?: false)
     }
 
-    fun isHomogeneous(): Boolean {
-        return false
+    fun isAllOf(): Boolean {
+        return field.all { !it.value }
     }
 
     fun limits(): Pair<Pair<Int, Int>, Pair<Int, Int>> {
