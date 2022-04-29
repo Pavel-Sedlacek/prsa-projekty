@@ -1,11 +1,9 @@
 import field.Field
-import io.CIO
 import io.IO
 
-class Game {
+class Game(private val io: IO) {
 
     private val field: Field = Field(5)
-    private val io: IO = CIO()
 
     suspend fun play() {
         while (!field.isAllOf()) {
