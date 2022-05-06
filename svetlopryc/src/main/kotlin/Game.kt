@@ -5,7 +5,7 @@ class Game(private val io: IO) {
 
     private val field: Field = Field(5)
 
-    suspend fun play() {
+    fun play() {
         while (!field.isAllOf()) {
             val inp = io.readInput(field.limits())
             field.play(inp)
