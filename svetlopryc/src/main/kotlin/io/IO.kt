@@ -1,8 +1,10 @@
 package io
 
-import field.`﷼Souřadnice`
+import field.Coordinates
+import field.Limit
 
 interface IO {
-    fun readInput(limits: Pair<Pair<Int, Int>, Pair<Int, Int>>): `﷼Souřadnice`
-    fun preview(field: Map<`﷼Souřadnice`, Boolean>)
+    fun read(limits: Limit): Coordinates
+    fun view(field: Set<Coordinates>, limits: Limit)
+
 }

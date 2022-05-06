@@ -1,33 +1,29 @@
 package io
 
-import field.`﷼Souřadnice`
+import field.Coordinates
+import field.Limit
 
 
-class CIO : IO {
+object CIO : IO {
 
-    override fun readInput(limits: Pair<Pair<Int, Int>, Pair<Int, Int>>): `﷼Souřadnice` {
-        var inp = `﷼Souřadnice`(-1, -1)
+    override fun read(limits: Limit): Coordinates {
+        var inp: Coordinates
         do {
-            outLn("inp X: ")
+            println("input X coordinate")
             val rX = readln().toInt()
-            outLn("inp Y: ")
+            println("input Y coordinate ")
             val rY = readln().toInt()
-            inp = `﷼Souřadnice`(rX, rY)
-        } while (inp.x < limits.first.first || inp.x > limits.first.second || inp.y < limits.second.first || inp.y > limits.second.second)
+            inp = Coordinates(rX, rY)
+        } while (inp.x !in limits.first || inp.y !in limits.second)
         return inp
     }
 
-    private fun outLn(s: String = "") = println(s)
-    private fun out(s: String) = print(s)
-
-    override fun preview(field: Map<`﷼Souřadnice`, Boolean>) {
-        for (x in field.minOf { it.key.x }..field.maxOf { it.key.x }) {
-            for (y in field.minOf { it.key.y }..field.maxOf { it.key.y }) {
-                out(
-                    "${(field[`﷼Souřadnice`(x, y)] ?: false).toString().first()} "
-                )
+    override fun view(field: Set<Coordinates>, limits: Limit) {
+        for (x in limits.first) {
+            for (y in limits.second) {
+                print(if (field.contains(Coordinates(x, y))) "⬜ " else "⬛ ")
             }
-            outLn()
+            println()
         }
     }
 }

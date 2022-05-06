@@ -1,15 +1,15 @@
 import field.Field
-import io.IO
+import player.IPlayer
 
-class Game(private val io: IO) {
+class Game(private val player: IPlayer, size: Int) {
 
-    private val field: Field = Field(5)
+    private val field: Field = Field(size)
 
     fun play() {
-        while (!field.isAllOf()) {
-            val inp = io.readInput(field.limits())
-            field.play(inp)
-            io.preview(field.fieldPreview)
+        var turn = 0
+        while (!field.isAllOff) {
+            field.play(player.play(field.fieldPreview, field.limits))
+            println("Current turn : ${turn++}")
         }
     }
 }

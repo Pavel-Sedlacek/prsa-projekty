@@ -1,3 +1,3 @@
 package field
 
-data class `﷼Souřadnice`(val x: Int, val y: Int)
+data class Coordinates(val x: Int, val y: Int)
