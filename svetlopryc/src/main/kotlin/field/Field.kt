@@ -4,21 +4,29 @@ import kotlin.random.Random.Default.nextBoolean
 
 typealias Limit = Pair<IntRange, IntRange>
 
-class Field(private val width: Int, private val height: Int = width) {
-
-    private val field = mutableSetOf<Coordinates>()
+class Field(
+    private val width: Int,
+    private val height: Int = width,
+    private val field: MutableSet<Coordinates> = mutableSetOf()
+) {
 
     val limits: Limit
-        get() = 0..width to 0..height
+        get() = (0 until width) to (0 until height)
 
     val fieldPreview
+        get() = Field(width, height, field.toMutableSet())
+
+    val rank
+        get() = field.size
+
+    val pure
         get() = field.toSet()
 
     val isAllOff
         get() = field.isEmpty()
 
     init {
-        for (x in 0..width) for (y in 0..height)
+        for (x in 0 until width) for (y in 0 until height)
             if (nextBoolean()) field.add(Coordinates(x, y))
     }
 
@@ -31,7 +39,7 @@ class Field(private val width: Int, private val height: Int = width) {
     }
 
     private fun playSafe(coordinates: Coordinates) {
-        if (coordinates.x in 0..width && coordinates.y in 0..height)
+        if (coordinates.x in 0 until width && coordinates.y in 0 until height)
             if (field.contains(coordinates)) field.remove(coordinates)
             else field.add(coordinates)
     }

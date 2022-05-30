@@ -4,7 +4,7 @@ import player.HumanPlayer
 
 fun main(args: Array<String>) {
     val p = HumanPlayer(CIO)
-    val a = AIPlayer()
+    val a = AIPlayer(24)
     val x = Game(a, 3)
     x.play()
 }
